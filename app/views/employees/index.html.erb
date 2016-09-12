@@ -1,0 +1,25 @@
+<div class="panel panel-default panel-table-list">
+  <% if current_user.is_admin? %>
+  <ul class="nav">
+    <li role="presentation" class="active"><a href="<%= new_employee_path%>">New Employee</a></li>
+  </ul>     
+  <% end%>
+  <div class="panel-heading">Employees</div>
+  <table class="table table-hover table-striped table-bordered table-responsive">
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Actions</th>
+    <% if @employees %>
+    <% @employees.each do |emp| %>
+    <tr>
+      <td> <%= emp.id%> </td>
+      <td> <%= emp.first_name%> </td>
+      <td> <%= emp.last_name%> </td>
+      <td> <%= link_to "Delete", employee_path(emp.id), method: 'delete', class: 'btn btn-default' %> </td>
+    </tr>
+    <%end%>
+    <%= will_paginate @employees %>
+    <% end%>
+  </table>
+</div>
