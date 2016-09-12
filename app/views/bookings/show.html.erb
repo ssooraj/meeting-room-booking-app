@@ -1,0 +1,18 @@
+<ul class="list-group col-md-4 room-detail-list">
+	<li class="list-group-item">
+		<span class="badge"> <%= @booking.start_time_formatted %> </span>
+		Start Time
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= @booking.end_time_formatted %> </span>
+		End Time
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= @booking.user.full_name %> </span>
+		Booked By
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= delete_booking(@booking.id) %> </span>
+		Action
+	</li>
+</ul>

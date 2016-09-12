@@ -1,0 +1,28 @@
+<%= form_for(@booking) do |f| %>
+<%= f.hidden_field :room_id, value: @room.id%>
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Start Time</label>
+        <%= f.text_field :start_time, class: "form-control datetimepicker"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+      <div class="form-group">
+        <label for="exampleInputEmail1">End Time</label>
+        <%= f.text_field :end_time, class: "form-control datetimepicker"%>
+      </div>
+    </div>
+  </div>
+</div>
+<p>
+<%= @booking.errors.full_messages.first unless @booking.errors.blank? %>
+</p>
+<button type="submit" class="btn btn-default">Submit</button>
+<% end %>
