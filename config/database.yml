@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  reconnect: false
+
+development:
+  <<: *default
+  database: meeting_room
+  username: sooraj
+  password: qburst
+  host: localhost
+
+test:
+  <<: *default
+  database: meeting_room_test
+  username: sooraj
+  password: qburst
+  host: localhost
+
+production:
+  <<: *default
+  database: meeting_room
+  username: sooraj
+  password: qburst
+  host: localhost
