@@ -1,0 +1,29 @@
+<div class="panel panel-default panel-table-list">
+  <% if current_user.is_admin? %>
+  <ul class="nav">
+    <li role="presentation" class="active"><%=new_room_link%></li>
+  </ul>     
+  <% end%>
+  <div class="panel-heading">Rooms</div>
+  <table class="table table-hover table-striped table-bordered table-responsive">
+    <th>Room ID</th>
+    <th>Name</th>
+    <th>Capacity</th>
+    <th>Next Booking</th>
+    <th>Is Available Now</th>
+    <th>Actions</th>
+    <% if @rooms%>
+    <% @rooms.each do |room| %>
+    <tr>
+      <td> <%= room.id%> </td>
+      <td> <%= room.name%> </td>
+      <td> <%= room.capacity%> </td>
+      <td> <%= room.next_booking%> </td>
+      <td> <%= room.is_available_now%> </td>
+      <td> <%= button_to "View Room", room_path(room.id), method: 'get', class: 'btn btn-default' %> </td>
+    </tr>
+    <%end%>
+    <%= will_paginate @rooms %>
+    <% end%>
+  </table>
+</div>

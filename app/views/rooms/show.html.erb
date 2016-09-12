@@ -1,0 +1,47 @@
+<ul class="list-group col-md-4 room-detail-list">
+	<li class="list-group-item">
+		<span class="badge"> <%= @room.name %> </span>
+		Name
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= @room.capacity %> </span>
+		Capacity
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= @room.next_booking %> </span>
+		Next Booking
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= @room.is_available_now %> </span>
+		Is Available Now <%=  Time.now %>
+	</li>
+	<li class="list-group-item">
+		<span class="badge"> <%= book_room_button(@room.id) %> </span>
+		Action
+	</li>
+	<%if current_user.is_admin? %>
+	<li class="list-group-item">
+		<span class="badge"> <%= delete_room_button %> </span>
+		Action
+	</li>
+	<% end%>
+</ul>
+
+<span class="col-md-8">
+	<div class="panel-heading">Upcoming Bookings</div>
+	<table class="table table-hover table-striped table-bordered table-responsive">
+		<th>Booked By</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Actions</th>
+
+		<% @room.upcoming_bookings.each do |booking| %>
+		<tr>
+			<td> <%= booking.booked_by%> </td>
+			<td> <%= booking.start_time_formatted%> </td>
+			<td> <%= booking.end_time_formatted%> </td>
+			<td> <%= delete_booking(booking.id) if admin_or_booking_by_current_user(booking) %> </td>
+		</tr>
+		<%end%>
+	</table>
+</span>
